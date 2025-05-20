@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Diri</title>
+    <style>
+      * {
+        box-sizing: border-box; /* Ini penting untuk memastikan semua elemen mengikuti ukuran yang konsisten */
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 360px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 5px 0;
+        border-radius: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #79BC43;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 10px;
+      }
+
+      button {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .skip-btn {
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+        color: #555;
+      }
+
+      .skip-btn:hover {
+        background-color: #e0e0e0;
+      }
+
+      .next-btn {
+        background-color: #79BC43;
+        border: none;
+        color: white;
+      }
+
+      .next-btn:hover {
+        background-color: #6aa53a;
+      }
+
+      @media (max-width: 400px) {
+        .button-group {
+          flex-direction: column;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Diri</h1>
+        
+        <div class="form-group">
+            <label for="nama-lengkap">Nama Lengkap</label>
+            <input type="text" id="nama-lengkap" placeholder="Masukkan nama lengkap">
+        </div>
+        
+        <div class="form-group">
+            <label for="no-hp">No HP</label>
+            <input type="tel" id="no-hp" placeholder="Masukkan nomor HP">
+        </div>
+        
+        <div class="form-group">
+            <label for="tanggal-lahir">Tanggal Lahir</label>
+            <input type="date" id="tanggal-lahir">
+        </div>
+        
+        <div class="form-group">
+            <label for="alamat">Alamat Lengkap</label>
+            <input type="text" id="alamat" placeholder="Masukkan alamat lengkap">
+        </div>
+        
+        <div class="button-group">
+            <button class="skip-btn" id="skip-btn">Lewati</button>
+            <button class="next-btn" id="next-btn">Lanjut</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const skipBtn = document.getElementById('skip-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            // Fungsi untuk validasi form
+            function validateForm() {
+                const namaLengkap = document.getElementById('nama-lengkap').value;
+                const noHp = document.getElementById('no-hp').value;
+                const tanggalLahir = document.getElementById('tanggal-lahir').value;
+                const alamat = document.getElementById('alamat').value;
+                
+                if (!namaLengkap || !noHp || !tanggalLahir || !alamat) {
+                    alert('Harap lengkapi semua informasi dasar sebelum melanjutkan');
+                    return false;
+                }
+                
+                // Validasi No HP (minimal 10 digit, maksimal 15 digit)
+                const hpRegex = /^[0-9]{10,15}$/;
+                if (!hpRegex.test(noHp)) {
+                    alert('No HP harus terdiri dari 10-15 digit angka');
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            // Event listener untuk tombol Lewati
+            skipBtn.addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin melewati pengisian informasi dasar?')) {
+                    // Redirect atau lanjut ke halaman berikutnya
+                    alert('Anda akan melanjutkan tanpa mengisi informasi dasar');
+                    // window.location.href = 'halaman-berikutnya.html';
+                }
+            });
+            
+            // Event listener untuk tombol Lanjut
+            nextBtn.addEventListener('click', function() {
+                if (validateForm()) {
+                    // Simpan data atau lanjut ke halaman berikutnya
+                    alert('Informasi dasar telah disimpan, melanjutkan ke langkah berikutnya');
+                    // window.location.href = 'halaman-berikutnya.html';
+                    
+                    // Contoh menyimpan data ke localStorage
+                    const formData = {
+                        namaLengkap: document.getElementById('nama-lengkap').value,
+                        noHp: document.getElementById('no-hp').value,
+                        tanggalLahir: document.getElementById('tanggal-lahir').value,
+                        alamat: document.getElementById('alamat').value
+                    };
+                    
+                    localStorage.setItem('informasiDasar', JSON.stringify(formData));
+                }
+            });
+            
+            // Format tanggal untuk input date (opsional)
+            const tanggalLahirInput = document.getElementById('tanggal-lahir');
+            tanggalLahirInput.addEventListener('focus', function() {
+                this.type = 'date';
+            });
+            
+            tanggalLahirInput.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.type = 'text';
+                    this.placeholder = 'Tanggal Lahir';
+                }
+            });
+            
+            // Validasi input No HP (hanya angka)
+            const noHpInput = document.getElementById('no-hp');
+            noHpInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+    </script>
+</body>
+</html>

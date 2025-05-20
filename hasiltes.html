@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pemeriksaan Laboratorium</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .clinic-name {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .clinic-address {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .title {
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+        .patient-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .patient-info div {
+            width: 48%;
+            margin-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .conclusion {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #79BC43;
+        }
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+        }
+        .highlight {
+            background-color: #fffacd;
+        }
+        .normal-range {
+            font-size: 12px;
+            color: #666;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+        .print-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #79BC43;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .print-button:hover {
+            background-color: #45a049;
+        }
+        @media print {
+            .print-button {
+                display: none;
+            }
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="clinic-name">KLINIK RAWAT JALAN BAHRUL MAGFIROH CINTA INDONESIA (BMCI)</div>
+            <div class="clinic-address">Jl. Batu Permata No. 01, Kel, Tlogomas, Kec. Lowokwaru, Malang 65144</div>
+            <div class="clinic-address">Tlp. +6861-0153-3389, Email : bahruimaghfirehci@gmail.co</div>
+        </div>
+
+        <div class="title">RINCIAN HASIL PEMERIKSAAN LABORATORIUM</div>
+
+        <div class="patient-info">
+            <div><strong>Kode Booking</strong>: 1739257942984</div>
+            <div><strong>Dokter/Pemeriksa</strong>: dr. Arrizky Firrar Decy R.T.</div>
+            <div><strong>Nama Pasien</strong>: Merdiana Kaita Lepir</div>
+            <div><strong>Tgl Lahir</strong>: 2004-05-09, 20 th 9 bln</div>
+            <div><strong>Alamat</strong>: jl. akordion no. 199</div>
+            <div><strong>Jenis Kelamin</strong>: P</div>
+        </div>
+
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Uraian</th>
+                    <th>Hasil Pemeriksaan</th>
+                    <th>Nilai Normal</th>
+                    <th>Satuan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hemoglobin</td>
+                    <td>12.9</td>
+                    <td>11.0-16.0</td>
+                    <td>g/dl</td>
+                </tr>
+                <tr>
+                    <td>MCHC</td>
+                    <td>35.3</td>
+                    <td>31-36</td>
+                    <td>pg</td>
+                </tr>
+                <tr>
+                    <td>Leukosit</td>
+                    <td>11.0</td>
+                    <td>3.5-10.0</td>
+                    <td>ribu/ul</td>
+                </tr>
+                <tr>
+                    <td>Trombosit</td>
+                    <td>503</td>
+                    <td>150-440</td>
+                    <td>ribu/ul</td>
+                </tr>
+                <tr>
+                    <td>Hematokrit</td>
+                    <td>36.5</td>
+                    <td>35-47</td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Eritrosit</td>
+                    <td>4.7</td>
+                    <td>4.5 - 5.5</td>
+                    <td>Juta/ul</td>
+                </tr>
+                <tr>
+                    <td>LED</td>
+                    <td>-</td>
+                    <td>0-20</td>
+                    <td>mm/jam</td>
+                </tr>
+                <tr>
+                    <td>Hitung Jenis</td>
+                    <td>-/-/67/28/5</td>
+                    <td>1-2 / 0-1 / 54-62 / 25-33 / 3-7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MCV</td>
+                    <td>78</td>
+                    <td>80-93</td>
+                    <td>fl</td>
+                </tr>
+                <tr>
+                    <td>MCH</td>
+                    <td>27.4</td>
+                    <td>26-31</td>
+                    <td>pg</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="conclusion">
+            <strong>Simpulan:</strong><br>
+            Hasil pemeriksaan laboratorium menunjukkan kadar leukosit dan trombosit diatas batas normal. Hasil tersebut dapat menunjukkan adanya infeksi.
+        </div>
+
+        <div class="signature">
+            Malang, 2025-02-14<br>
+            Petugas,
+        </div>
+
+        <button class="print-button" onclick="window.print()">Cetak Hasil</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight abnormal values
+            const table = document.getElementById('resultsTable');
+            const rows = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                if (cells.length < 3) continue;
+                
+                const testName = cells[0].textContent.trim();
+                const result = parseFloat(cells[1].textContent);
+                const normalRange = cells[2].textContent.trim();
+                
+                if (isNaN(result)) continue;
+                
+                // Parse normal range (assuming format like "11.0-16.0" or "150-440")
+                const rangeParts = normalRange.split('-').map(part => {
+                    // Remove any non-numeric characters except decimal point
+                    const numStr = part.replace(/[^\d.]/g, '');
+                    return parseFloat(numStr);
+                });
+                
+                if (rangeParts.length === 2 && !isNaN(rangeParts[0]) && !isNaN(rangeParts[1])) {
+                    if (result < rangeParts[0] || result > rangeParts[1]) {
+                        cells[1].classList.add('highlight');
+                    }
+                }
+            }
+            
+            // Format patient name to capitalize each word
+            const patientNameElement = document.querySelector('.patient-info div:nth-child(3)');
+            if (patientNameElement) {
+                const nameParts = patientNameElement.textContent.split(':');
+                if (nameParts.length > 1) {
+                    const name = nameParts[1].trim();
+                    const formattedName = name.split(' ').map(word => 
+                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                    ).join(' ');
+                    patientNameElement.innerHTML = `<strong>Nama Pasien</strong>: ${formattedName}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

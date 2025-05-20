@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Clenic</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <img src="bmci.jpg" alt="Logo BMCI" class="logo" />
+        <h2>Selamat Datang di <strong>Laboratorium Bahrul Maghfiroh</strong></h2>
+        <p>Ingin berobat segera Masuk!</p>
+
+        <div class="tab-buttons">
+            <button class="tab active" id="emailTab" onclick="switchTab('email')">Email</button>
+            <button class="tab" id="phoneTab" onclick="switchTab('phone')">No. Hp</button>
+        </div>
+
+        <div class="form form-email">
+            <input type="email" placeholder="Email" class="input" id="emailInput" />
+            <div class="password-wrapper">
+                <input type="password" placeholder="Kata Sandi" class="input" id="passwordInput" />
+                <span class="toggle-password" id="togglePassword">👁️</span>
+            </div>
+            <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+            <button class="btn-primary">Masuk</button>
+        </div>
+
+        <div class="form form-phone">
+            <input type="tel" placeholder="Nomor Handphone" class="input" id="phoneInput" />
+            <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+            <button class="btn-primary">Masuk</button>
+        </div>
+
+        <div class="divider">atau</div>
+
+        <button class="btn-google">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo" />
+            Google
+        </button>
+
+        <p class="register">Belum punya akun? <a href="registrasi.html">Daftar</a></p>
+    </div>
+
+    <script>
+    function switchTab(tabName) {
+        // Update tab buttons
+        document.getElementById('emailTab').classList.remove('active');
+        document.getElementById('phoneTab').classList.remove('active');
+
+        // Hide all forms
+        document.querySelector('.form-email').style.display = 'none';
+        document.querySelector('.form-phone').style.display = 'none';
+
+        // Show selected form and activate corresponding tab
+        if (tabName === 'email') {
+            document.getElementById('emailTab').classList.add('active');
+            document.querySelector('.form-email').style.display = 'block';
+        } else {
+            document.getElementById('phoneTab').classList.add('active');
+            document.querySelector('.form-phone').style.display = 'block';
+        }
+    }
+
+    // Initialize to show email form by default
+    window.onload = function() {
+        document.querySelector('.form-email').style.display = 'block';
+    };
+    </script>
+</body>
+
+</html>

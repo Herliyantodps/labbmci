@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+  <style>
+    * {
+      box-sizing: border-box; /* Ini penting untuk memastikan semua elemen mengikuti ukuran yang konsisten */
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-top: 0;
+      color: gray;
+      font-size: 14px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #79BC43;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #6aa53a;
+    }
+
+    .separator {
+      margin: 20px 0;
+      position: relative;
+      text-align: center;
+      color: gray;
+      font-size: 14px;
+    }
+
+    .separator::before,
+    .separator::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #ccc;
+    }
+
+    .separator::before {
+      left: 0;
+    }
+
+    .separator::after {
+      right: 0;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #fff;
+      width: 100%;
+    }
+
+    .google-btn img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .login-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: gray;
+    }
+
+    .login-link a {
+      color: #79BC43;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <img src="bmci.jpg" alt="Register">
+
+  <h2>Register</h2>
+  <p>Buat akun baru</p>
+
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Kata Sandi">
+  <button onclick="register()">Daftar</button>
+
+  <div class="separator">atau</div>
+
+  <div class="google-btn" onclick="googleLogin()">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+    Google
+  </div>
+
+  <div class="login-link">
+    Sudah punya akun? <a href="index.html">Masuk</a>
+  </div>
+</div>
+
+<script>
+  function register() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if (!email || !password) {
+      alert("Email dan kata sandi wajib diisi!");
+    } else if (password.length < 6) {
+      alert("Kata sandi minimal 6 karakter!");
+    } else {
+      alert(`Pendaftaran berhasil untuk: ${email}`);
+    }
+  }
+
+  function googleLogin() {
+    alert("Login dengan Google belum tersedia.");
+  }
+</script>
+
+</body>
+</html>
