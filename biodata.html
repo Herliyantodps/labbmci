@@ -6,7 +6,7 @@
     <title>Form Data Diri</title>
     <style>
       * {
-        box-sizing: border-box; /* Ini penting untuk memastikan semua elemen mengikuti ukuran yang konsisten */
+        box-sizing: border-box;
       }
 
       body {
@@ -58,47 +58,22 @@
         border-color: #79BC43;
       }
 
-      .button-group {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        gap: 10px;
-      }
-
-      button {
-        flex: 1;
+      .next-btn {
+        width: 100%;
         padding: 12px;
         border-radius: 8px;
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
         transition: background-color 0.3s;
-      }
-
-      .skip-btn {
-        background-color: #f1f1f1;
-        border: 1px solid #ddd;
-        color: #555;
-      }
-
-      .skip-btn:hover {
-        background-color: #e0e0e0;
-      }
-
-      .next-btn {
         background-color: #79BC43;
         border: none;
         color: white;
+        margin-top: 20px;
       }
 
       .next-btn:hover {
         background-color: #6aa53a;
-      }
-
-      @media (max-width: 400px) {
-        .button-group {
-          flex-direction: column;
-        }
       }
     </style>
 </head>
@@ -126,15 +101,11 @@
             <input type="text" id="alamat" placeholder="Masukkan alamat lengkap">
         </div>
         
-        <div class="button-group">
-            <button class="skip-btn" id="skip-btn">Lewati</button>
-            <button class="next-btn" id="next-btn">Lanjut</button>
-        </div>
+        <button class="next-btn" id="next-btn">Lanjut</button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const skipBtn = document.getElementById('skip-btn');
             const nextBtn = document.getElementById('next-btn');
             
             // Fungsi untuk validasi form
@@ -159,23 +130,10 @@
                 return true;
             }
             
-            // Event listener untuk tombol Lewati
-            skipBtn.addEventListener('click', function() {
-                if (confirm('Apakah Anda yakin ingin melewati pengisian informasi dasar?')) {
-                    // Redirect atau lanjut ke halaman berikutnya
-                    alert('Anda akan melanjutkan tanpa mengisi informasi dasar');
-                    // window.location.href = 'halaman-berikutnya.html';
-                }
-            });
-            
             // Event listener untuk tombol Lanjut
             nextBtn.addEventListener('click', function() {
                 if (validateForm()) {
-                    // Simpan data atau lanjut ke halaman berikutnya
-                    alert('Informasi dasar telah disimpan, melanjutkan ke langkah berikutnya');
-                    // window.location.href = 'halaman-berikutnya.html';
-                    
-                    // Contoh menyimpan data ke localStorage
+                    // Simpan data ke localStorage
                     const formData = {
                         namaLengkap: document.getElementById('nama-lengkap').value,
                         noHp: document.getElementById('no-hp').value,
@@ -184,6 +142,9 @@
                     };
                     
                     localStorage.setItem('informasiDasar', JSON.stringify(formData));
+                    
+                    // Redirect ke halaman beranda.html setelah validasi berhasil
+                    window.location.href = 'beranda.html';
                 }
             });
             

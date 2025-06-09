@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LabCare - Pemeriksaan Laboratorium Online</title>
+    <title>LabBMCI - Pemeriksaan Laboratorium Online</title>
     <style>
         * {
             box-sizing: border-box;
@@ -801,6 +801,19 @@
                 font-size: 1.5rem;
             }
         }
+
+        .back-arrow {
+            margin-right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: none; /* Initially hidden */
+        }
+
+        @media (max-width: 768px) {
+            .back-arrow {
+                display: block; /* Show on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -863,7 +876,7 @@
                     <div class="feature-icon">📊</div>
                     <h3>Hasil Pemeriksaan</h3>
                     <p>Akses hasil pemeriksaan laboratorium Anda secara online kapan saja dan di mana saja dengan aman.</p>
-                    <a href="#" class="btn" id="resultBtn2" style="display: inline-block; margin-top: 1rem;">Cek Hasil</a>
+                    <a href="hasiltes.html" class="btn" id="resultBtn2" style="display: inline-block; margin-top: 1rem;">Cek Hasil</a>
                 </div>
             </div>
         </section>
@@ -873,8 +886,8 @@
             <div class="profile-header">
                 <div class="profile-avatar">JD</div>
                 <div class="profile-info">
-                    <h2>John Doe</h2>
-                    <p>Member sejak: 15 Januari 2023</p>
+                    <h2>Herliyanto</h2>
+                    <p>Member sejak: 15 Maret 2025</p>
                 </div>
             </div>
             
@@ -883,11 +896,11 @@
                     <h3>Informasi Pribadi</h3>
                     <div class="detail-item">
                         <span class="detail-label">Nama Lengkap</span>
-                        <span class="detail-value">John Doe</span>
+                        <span class="detail-value">Herliyanto</span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Tanggal Lahir</span>
-                        <span class="detail-value">15 Juni 1985</span>
+                        <span class="detail-value">04 Januari 2002</span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Jenis Kelamin</span>
@@ -899,18 +912,18 @@
                     <h3>Kontak</h3>
                     <div class="detail-item">
                         <span class="detail-label">Email</span>
-                        <span class="detail-value">john.doe@example.com</span>
+                        <span class="detail-value">herliyantodps@gmail.com</span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Nomor HP</span>
-                        <span class="detail-value">081234567890</span>
+                        <span class="detail-value">081939797326</span>
                     </div>
                 </div>
                 
                 <div class="detail-card">
                     <h3>Alamat</h3>
                     <div class="detail-item">
-                        <span class="detail-value">Jl. Contoh No. 123, Kelurahan Sample, Kecamatan Test, Kota Jakarta Selatan, 12345</span>
+                        <span class="detail-value">Dusun Polalang, Desa Gapura Barat, RT 05 / RW 01, Kec.Gapura, Kab.Sumenep, Jawa Timur.</span>
                     </div>
                 </div>
             </div>
@@ -976,7 +989,7 @@
                         </tr>
                         <tr>
                             <td>A18</td>
-                            <td>John Doe</td>
+                            <td>Herliyanto</td>
                             <td>Kolesterol</td>
                             <td>11:15 WIB</td>
                         </tr>
@@ -1014,28 +1027,28 @@
                 <h3>Pilih Dokter</h3>
                 <div class="doctor-list">
                     <div class="doctor-card" data-doctor-id="1">
-                        <div class="doctor-avatar">DA</div>
+                        <div class="doctor-avatar">AT</div>
                         <div class="doctor-info">
-                            <div class="doctor-name">Dr. Andi Saputra</div>
-                            <div class="doctor-specialty">Spesialis Penyakit Dalam</div>
+                            <div class="doctor-name">drg. Antuk Tyassing Pakolih</div>
+                            <div class="doctor-specialty">Dokter Gigi</div>
                         </div>
                         <div class="doctor-status status-online">Online</div>
                     </div>
                     
                     <div class="doctor-card" data-doctor-id="2">
-                        <div class="doctor-avatar">RS</div>
+                        <div class="doctor-avatar">YA</div>
                         <div class="doctor-info">
-                            <div class="doctor-name">Dr. Rina Sari</div>
-                            <div class="doctor-specialty">Spesialis Anak</div>
+                            <div class="doctor-name">dr. Yoggie Andang Gunawan</div>
+                            <div class="doctor-specialty">Spesialis Jantung</div>
                         </div>
                         <div class="doctor-status status-online">Online</div>
                     </div>
                     
                     <div class="doctor-card" data-doctor-id="3">
-                        <div class="doctor-avatar">BW</div>
+                        <div class="doctor-avatar">II</div>
                         <div class="doctor-info">
-                            <div class="doctor-name">Dr. Budi Wijaya</div>
-                            <div class="doctor-specialty">Spesialis Jantung</div>
+                            <div class="doctor-name">dr. Indira Indah Farahdiba</div>
+                            <div class="doctor-specialty">Spesialis Gigi</div>
                         </div>
                         <div class="doctor-status status-offline">Offline</div>
                     </div>
@@ -1044,10 +1057,11 @@
             
             <div id="chatInterface" style="display: none;">
                 <div class="chat-header">
+                    <span class="back-arrow">←</span>
                     <div class="chat-header-avatar" id="currentDoctorAvatar">DA</div>
                     <div>
-                        <div id="currentDoctorName">Dr. Andi Saputra</div>
-                        <div id="currentDoctorSpecialty">Spesialis Penyakit Dalam</div>
+                        <div id="currentDoctorName">drg. Antuk Tyassing Pakolih</div>
+                        <div id="currentDoctorSpecialty">Dokter Gigi</div>
                     </div>
                 </div>
                 <div class="chat-container">
@@ -1133,6 +1147,10 @@
                 
                 <div class="registration-details">
                     <div class="registration-detail-item">
+                        <div class="registration-detail-label">Kode Booking</div>
+                        <div id="confirmationPatientId">1739257942984</div>
+                    </div>
+                    <div class="registration-detail-item">
                         <div class="registration-detail-label">Jenis Pemeriksaan</div>
                         <div id="confirmationTestName">Pemeriksaan Darah Lengkap</div>
                     </div>
@@ -1163,14 +1181,14 @@
             <h2>Hasil Pemeriksaan</h2>
             
             <div style="margin-bottom: 1rem;">
-                <label for="patientId">ID Pasien:</label>
-                <input type="text" id="patientId" placeholder="Masukkan ID Pasien">
+                <label for="patientId">Kode Booking:</label>
+                <input type="text" id="patientId" placeholder="Masukkan Kode Booking">
                 <label for="accessCode" style="display: block; margin-top: 0.5rem;">Kode Akses:</label>
                 <input type="password" id="accessCode" placeholder="Masukkan Kode Akses">
                 <button class="btn" id="checkResultBtn" style="margin-top: 1rem; width: 100%;">Cek Hasil</button>
             </div>
             
-            <div id="resultContent" style="display: none;">
+            <!-- <div id="resultContent" style="display: none;">
                 <h3>Hasil Pemeriksaan Terakhir</h3>
                 <p>Nama: John Doe | Tanggal: 15 Juni 2023</p>
                 
@@ -1217,7 +1235,7 @@
                     <button class="btn" style="flex: 1;">Cetak Hasil</button>
                     <button class="btn" style="flex: 1;">Konsultasi Dokter</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -1451,7 +1469,7 @@
                     // Simple chatbot logic
                     let reply = "Saya memahami keluhan Anda. Untuk informasi lebih lanjut, saya sarankan Anda melakukan pemeriksaan laboratorium.";
                     if (message.toLowerCase().includes("hasil")) {
-                        reply = "Hasil laboratorium biasanya keluar dalam waktu 1-3 hari kerja tergantung jenis pemeriksaannya. Anda bisa mengeceknya di menu Hasil Tes dengan ID pasien dan kode akses yang diberikan.";
+                        reply = "Hasil laboratorium biasanya keluar dalam waktu 1-3 hari kerja tergantung jenis pemeriksaannya. Anda bisa mengeceknya di menu Hasil Tes dengan Kode Booking dan kode akses yang diberikan.";
                     } else if (message.toLowerCase().includes("biaya")) {
                         reply = "Biaya pemeriksaan bervariasi tergantung jenis tes. Untuk informasi lengkap, Anda bisa melihat daftar harga di menu Pemeriksaan Laboratorium.";
                     }
@@ -1592,6 +1610,7 @@
                 const test = testData[testId];
                 
                 // Show confirmation with details
+                document.getElementById("confirmationPatientId").textContent = "1739257942984"; 
                 confirmationTestName.textContent = test.name;
                 confirmationQueueNumber.textContent = test.queueNumber;
                 confirmationQueueTime.textContent = test.queueTime;
@@ -1702,7 +1721,7 @@
                     });
                     
                     // Change button text since this is a view-only mode
-                    registerTest.textContent = "Tutup";
+                    registerTest.textContent = "Detail";
                     registerTest.onclick = function() {
                         testModal.style.display = "none";
                     };
@@ -1710,19 +1729,18 @@
             }
         });
         
-        // Check result functionality
+        // Check result functionality - Modified to redirect to hasiltes.html
         const checkResultBtn = document.getElementById("checkResultBtn");
-        const resultContent = document.getElementById("resultContent");
         
         checkResultBtn.onclick = function() {
-            // In a real app, this would verify credentials with a server
             const patientId = document.getElementById("patientId").value;
             const accessCode = document.getElementById("accessCode").value;
             
             if (patientId && accessCode) {
-                resultContent.style.display = "block";
+                // Redirect to hasiltest.html when both fields are filled
+                window.location.href = "hasiltes.html";
             } else {
-                alert("Silakan masukkan ID Pasien dan Kode Akses yang valid.");
+                alert("Silakan masukkan Kode Booking dan Kode Akses yang valid.");
             }
         }
         
@@ -1734,6 +1752,15 @@
                 alert("Data antrian telah diperbarui");
             });
         }
+
+        // Add this to the chat functionality section in the script
+        const backArrow = document.querySelector(".back-arrow");
+
+        backArrow.addEventListener("click", function() {
+            // Switch back to doctor selection
+            chatInterface.style.display = "none";
+            doctorSelection.style.display = "block";
+        });
     </script>
 </body>
 </html>

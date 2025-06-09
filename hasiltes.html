@@ -98,8 +98,26 @@
         .print-button:hover {
             background-color: #45a049;
         }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #e0e0e0;
+        }
+        .back-button::before {
+            content: "← ";
+        }
         @media print {
-            .print-button {
+            .print-button, .back-button {
                 display: none;
             }
             body {
@@ -109,6 +127,8 @@
     </style>
 </head>
 <body>
+    <a href="javascript:history.back()" class="back-button">Kembali</a>
+    
     <div class="container">
         <div class="header">
             <div class="clinic-name">KLINIK RAWAT JALAN BAHRUL MAGFIROH CINTA INDONESIA (BMCI)</div>
