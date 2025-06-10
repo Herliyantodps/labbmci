@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin - Laboratorium Bahrul Maghfiroh</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f4f6f8;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #83c442;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #569617;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .placeholder-box {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Laboratorium Bahrul Maghfiroh</h2>
+    <a href="pendaftran-admin.html" class="active" onclick="showSection('pendaftaran')">Manage Pendaftaran</a>
+    <a href="teslab-admin.html" onclick="showSection('tes')">Manage Tes Lab</a>
+    <a href="hasiltes-admin.html" onclick="showSection('hasil')">Manage Hasil Tes Lab</a>
+  </div>
+
+  <div class="main">
+    <div id="pendaftaran" class="content-section active">
+      <div class="section-title">Manage Pendaftaran</div>
+      <div class="placeholder-box">
+        Konten manajemen pendaftaran akan ditampilkan di sini.
+      </div>
+    </div>
+
+    <div id="tes" class="content-section">
+      <div class="section-title">Manage Tes Lab</div>
+      <div class="placeholder-box">
+        Konten manajemen tes laboratorium akan ditampilkan di sini.
+      </div>
+    </div>
+
+    <div id="hasil" class="content-section">
+      <div class="section-title">Manage Hasil Tes Lab</div>
+      <div class="placeholder-box">
+        Konten manajemen hasil tes laboratorium akan ditampilkan di sini.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content-section');
+      const links = document.querySelectorAll('.sidebar a');
+
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

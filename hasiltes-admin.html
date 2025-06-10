@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin - Hasil Tes</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f4f6f8;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #83c442;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #569617;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      font-size: 14px;
+      background-color: white;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f1f1;
+    }
+
+    .submit-btn {
+      background-color: #83c442;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Laboratorium Bahrul Maghfiroh</h2>
+    <a href="pendaftran-admin.html" onclick="showSection('pendaftaran')">Manage Pendaftaran</a>
+    <a href="teslab-admin.html" onclick="showSection('tes')">Manage Tes Lab</a>
+    <a href="hasiltes-admin.html" class="active" onclick="showSection('hasil')">Manage Hasil Tes Lab</a>
+  </div>
+
+  <div class="main">
+    <div id="pendaftaran" class="content-section">
+      <div class="section-title">Manage Pendaftaran</div>
+      <div class="placeholder-box">
+        Konten pendaftaran akan ditampilkan di sini.
+      </div>
+    </div>
+
+    <div id="tes" class="content-section">
+      <div class="section-title">Manage Tes Lab</div>
+      <div class="placeholder-box">
+        Konten tes laboratorium akan ditampilkan di sini.
+      </div>
+    </div>
+
+    <div id="hasil" class="content-section active">
+      <div class="section-title">Manage Hasil Tes Lab</div>
+      <div class="placeholder-box">
+        <form id="hasilForm">
+          <div class="form-group">
+            <label>Kode Booking</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Nama Pasien</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Alamat</label>
+            <textarea rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Dokter / Pemeriksa</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Tanggal Lahir</label>
+            <input type="date" required />
+          </div>
+          <div class="form-group">
+            <label>Jenis Kelamin</label>
+            <select required>
+              <option value="">Pilih</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Uraian</th>
+                <th>Nilai Normal</th>
+                <th>Satuan</th>
+                <th>Hasil Lab</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Hemoglobin</td><td>11.0 - 16.0</td><td>g/dl</td><td><input type="text" name="Hemoglobin"></td></tr>
+              <tr><td>MCHC</td><td>31 - 36</td><td>Pg</td><td><input type="text" name="MCHC"></td></tr>
+              <tr><td>Leukosit</td><td>3.5 - 10.0</td><td>ribu/ul</td><td><input type="text" name="Leukosit"></td></tr>
+              <tr><td>Trombosit</td><td>150 - 440</td><td>ribu/ul</td><td><input type="text" name="Trombosit"></td></tr>
+              <tr><td>Hematokrit</td><td>35 - 47</td><td>%</td><td><input type="text" name="Hematokrit"></td></tr>
+              <tr><td>Eritrosit</td><td>4.5 - 5.5</td><td>Juta/ul</td><td><input type="text" name="Eritrosit"></td></tr>
+              <tr><td>LED</td><td>0 - 20</td><td>mm/jam</td><td><input type="text" name="LED"></td></tr>
+              <tr><td>Hitung Jenis</td><td>1.2 / 0.1 / 54.62 / 25.33 / 3.7</td><td>-</td><td><input type="text" name="HitungJenis"></td></tr>
+              <tr><td>MCV</td><td>80 - 93</td><td>fl</td><td><input type="text" name="MCV"></td></tr>
+              <tr><td>MCH</td><td>26 - 31</td><td>Pg</td><td><input type="text" name="MCH"></td></tr>
+            </tbody>
+          </table>
+
+          <div class="form-group">
+            <label>Simpulan</label>
+            <textarea rows="3" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Simpan Hasil</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content-section');
+      const links = document.querySelectorAll('.sidebar a');
+
+      sections.forEach(section => section.classList.remove('active'));
+      links.forEach(link => link.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    document.getElementById('hasilForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Hasil tes berhasil disimpan!');
+      // Tambahkan logika penyimpanan data di sini
+    });
+  </script>
+</body>
+</html>

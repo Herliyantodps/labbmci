@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Laboratorium Bahrul Maghfiroh</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f4f6f8;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #83c442;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #569617;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      font-size: 14px;
+      background-color: white;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f1f1;
+    }
+
+    table button {
+      background-color: #569617;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    table button:hover {
+      background-color: #83c442;
+    }
+
+    /* @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+    } */
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin Laboratorium Bahrul Maghfiroh</h2>
+    <a href="pendaftran-admin.html" class="active" onclick="showSection('pendaftaran')">Manage Pendaftaran</a>
+    <a href="teslab-admin.html" onclick="showSection('teslab')">Manage Tes Lab</a>
+    <a href="hasiltes-admin.html" onclick="showSection('hasillab')">Manage Hasil Tes</a>
+  </div>
+
+  <div class="main">
+    
+    <!-- Pendaftaran -->
+    <div id="pendaftaran" class="content-section active">
+      <div class="section-title">Konfirmasi Pendaftaran Tes Lab</div>
+      <table id="daftarPendaftaran">
+        <thead>
+          <tr>
+            <th>Kode Booking</th>
+            <th>Jenis Pemeriksaan</th>
+            <th>No Antrian</th>
+            <th>Perkiraan Waktu</th>
+            <th>Biaya</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1739257942984</td>
+            <td>Hematologi Lengkap</td>
+            <td>12</td>
+            <td>10:30 WIB</td>
+            <td>Rp 150.000</td>
+            <td><button onclick="konfirmasi(this)">Konfirmasi</button></td>
+          </tr>
+          <tr>
+            <td>7364587543678</td>
+            <td>Kimia Darah</td>
+            <td>13</td>
+            <td>10:45 WIB</td>
+            <td>Rp 200.000</td>
+            <td><button onclick="konfirmasi(this)">Konfirmasi</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tes Lab -->
+    <div id="teslab" class="content-section">
+      <div class="section-title">Tambah Jenis Pemeriksaan</div>
+      <form onsubmit="tambahPemeriksaan(event)">
+        <label>Nama:</label><br/>
+        <input type="text" id="nama" required><br/>
+        <label>Penjelasan:</label><br/>
+        <textarea id="penjelasan" required></textarea><br/>
+        <label>Manfaat:</label><br/>
+        <textarea id="manfaat" required></textarea><br/>
+        <label>Persiapan:</label><br/>
+        <textarea id="persiapan" required></textarea><br/>
+        <label>Biaya:</label><br/>
+        <input type="number" id="biaya" required><br/><br/>
+        <button type="submit">Simpan</button>
+      </form>
+    </div>
+
+    <!-- Hasil Tes -->
+    <div id="hasillab" class="content-section">
+      <div class="section-title">Form Hasil Tes Laboratorium</div>
+      <form>
+        <label>Kode Booking:</label><br/>
+        <input type="text"><br/>
+        <label>Nama Pasien:</label><br/>
+        <input type="text"><br/>
+        <label>Alamat:</label><br/>
+        <textarea></textarea><br/>
+        <label>Dokter/Pemeriksa:</label><br/>
+        <input type="text"><br/>
+        <label>Tgl Lahir:</label><br/>
+        <input type="date"><br/>
+        <label>Jenis Kelamin:</label><br/>
+        <select>
+          <option>Laki-laki</option>
+          <option>Perempuan</option>
+        </select><br/><br/>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Uraian</th>
+              <th>Nilai Normal</th>
+              <th>Satuan</th>
+              <th>Hasil Lab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Hemoglobin</td><td>11.0-16.0</td><td>g/dl</td><td><input type="text" /></td></tr>
+            <tr><td>MCHC</td><td>31-36</td><td>Pg</td><td><input type="text" /></td></tr>
+            <tr><td>Leukosit</td><td>3.5-10.0</td><td>ribu/ul</td><td><input type="text" /></td></tr>
+            <tr><td>Trombosit</td><td>150-440</td><td>ribu/ul</td><td><input type="text" /></td></tr>
+            <tr><td>Hematokrit</td><td>35-47</td><td>%</td><td><input type="text" /></td></tr>
+            <tr><td>Eritrosit</td><td>4.5-5.5</td><td>Juta/ul</td><td><input type="text" /></td></tr>
+            <tr><td>LED</td><td>0-20</td><td>mm/jam</td><td><input type="text" /></td></tr>
+            <tr><td>Hitung Jenis</td><td>1.2/0.1/54.62/25.33/3.7</td><td>-</td><td><input type="text" /></td></tr>
+            <tr><td>MCV</td><td>80-93</td><td>fl</td><td><input type="text" /></td></tr>
+            <tr><td>MCH</td><td>26-31</td><td>Pg</td><td><input type="text" /></td></tr>
+          </tbody>
+        </table>
+
+        <label>Simpulan:</label><br/>
+        <textarea rows="4"></textarea><br/><br/>
+        <button type="submit">Simpan Hasil</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content-section');
+      const links = document.querySelectorAll('.sidebar a');
+      sections.forEach(s => s.classList.remove('active'));
+      links.forEach(l => l.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function konfirmasi(btn) {
+      const row = btn.closest("tr");
+      const kode = row.cells[0].innerText;
+      if (confirm(`Konfirmasi pendaftaran dengan kode ${kode}?`)) {
+        alert(`Pendaftaran ${kode} telah dikonfirmasi.`);
+        row.style.backgroundColor = "#e0f2f1";
+        btn.disabled = true;
+        btn.textContent = "Terkonfirmasi";
+      }
+    }
+
+    function tambahPemeriksaan(e) {
+      e.preventDefault();
+      alert("Jenis pemeriksaan berhasil ditambahkan.");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

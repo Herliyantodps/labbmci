@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Admin - Laboratorium Bahrul Maghfiroh</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      text-align: center;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    p {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .forgot {
+      text-align: right;
+      font-size: 12px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+
+    .forgot a {
+      color: #55aa33;
+      text-decoration: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #83c442;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .divider {
+      margin: 15px 0;
+    }
+
+    .google-button {
+      background: #fff;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .google-button img {
+      width: 20px;
+      margin-right: 8px;
+    }
+
+    .register {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .register a {
+      color: #55aa33;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="bmci.jpg" alt="Logo" class="logo" />
+    <h2>Selamat Datang Admin</h2>
+    <h3><strong>Laboratorium Bahrul Maghfiroh</strong></h3>
+    <p>Silakan masuk untuk mengelola sistem</p>
+
+    <form id="loginForm">
+      <input type="email" placeholder="Email" required />
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Kata Sandi" required />
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+      <div class="forgot"><a href="#">Lupa Kata Sandi?</a></div>
+      <button href ="index-admin.html" type="submit">Masuk</button>
+    </form>
+
+    <div class="divider">atau</div>
+
+    <div class="google-button" onclick="alert('Login Google belum diaktifkan')">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Icon" />
+      <span>Google</span>
+    </div>
+
+    <div class="register">
+      Belum punya akun? <a href="#">Daftar</a>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const type = passwordField.type === "password" ? "text" : "password";
+      passwordField.type = type;
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    // Simulasi login admin
+    alert("Login berhasil sebagai Admin!");
+    // Redirect ke halaman admin
+    window.location.href = "index-admin.html";
+    });
+    
+  </script>
+</body>
+</html>

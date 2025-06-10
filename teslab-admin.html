@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin - Laboratorium Bahrul Maghfiroh</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f4f6f8;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #83c442;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #569617;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .placeholder-box {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    form button {
+      background-color: #83c442;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f1f1;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Laboratorium Bahrul Maghfiroh</h2>
+    <a href="pendaftran-admin.html" onclick="showSection('pendaftaran')">Manage Pendaftaran</a>
+    <a href="teslab-admin.html" class="active" onclick="showSection('tes')">Manage Tes Lab</a>
+    <a href="hasiltes-admin.html" onclick="showSection('hasil')">Manage Hasil Tes Lab</a>
+  </div>
+
+  <div class="main">
+    <div id="pendaftaran" class="content-section">
+      <div class="section-title">Manage Pendaftaran</div>
+      <div class="placeholder-box">
+        Konten manajemen pendaftaran akan ditampilkan di sini.
+      </div>
+    </div>
+
+    <div id="tes" class="content-section active">
+      <div class="section-title">Manage Tes Lab</div>
+      <div class="placeholder-box">
+        <form id="formTes">
+          <input type="text" id="nama" placeholder="Nama Pemeriksaan" required />
+          <textarea id="penjelasan" placeholder="Penjelasan" required></textarea>
+          <textarea id="manfaat" placeholder="Manfaat" required></textarea>
+          <textarea id="persiapan" placeholder="Persiapan" required></textarea>
+          <input type="number" id="biaya" placeholder="Biaya (Rp)" required />
+          <button type="submit">Tambah Pemeriksaan</button>
+        </form>
+
+        <table id="tabelTes">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Penjelasan</th>
+              <th>Manfaat</th>
+              <th>Persiapan</th>
+              <th>Biaya</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data akan ditambahkan di sini -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="hasil" class="content-section">
+      <div class="section-title">Manage Hasil Tes Lab</div>
+      <div class="placeholder-box">
+        Konten manajemen hasil tes laboratorium akan ditampilkan di sini.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content-section');
+      const links = document.querySelectorAll('.sidebar a');
+
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    document.getElementById('formTes').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById('nama').value;
+      const penjelasan = document.getElementById('penjelasan').value;
+      const manfaat = document.getElementById('manfaat').value;
+      const persiapan = document.getElementById('persiapan').value;
+      const biaya = document.getElementById('biaya').value;
+
+      const tabel = document.querySelector('#tabelTes tbody');
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td>${nama}</td>
+        <td>${penjelasan}</td>
+        <td>${manfaat}</td>
+        <td>${persiapan}</td>
+        <td>Rp ${parseInt(biaya).toLocaleString('id-ID')}</td>
+      `;
+
+      tabel.appendChild(row);
+
+      // Reset form
+      this.reset();
+    });
+  </script>
+</body>
+</html>
