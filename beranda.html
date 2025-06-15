@@ -715,6 +715,146 @@
             color: #555;
         }
 
+        /* Payment Section */
+        .payment-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .payment-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-header h2 {
+            margin: 0;
+            color: #EAB44C;
+        }
+
+        .payment-form {
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .payment-form input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-details {
+            display: none;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-details h3 {
+            margin-top: 0;
+            color: #EAB44C;
+        }
+
+        .payment-methods {
+            margin-top: 1.5rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            border-color: #EAB44C;
+        }
+
+        .payment-method.selected {
+            border-color: #79BC43;
+            background-color: #f0f9e6;
+        }
+
+        .payment-method input {
+            margin-right: 1rem;
+        }
+
+        .payment-method-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .payment-method-info {
+            flex-grow: 1;
+        }
+
+        .payment-method-name {
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+        }
+
+        .payment-method-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .payment-confirmation {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .payment-confirmation h3 {
+            color: #79BC43;
+            margin-top: 0;
+        }
+
+        .payment-confirmation p {
+            margin-bottom: 1.5rem;
+        }
+
+        .qris-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .dana-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #EAB44C;
+            margin: 1rem 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
@@ -767,6 +907,11 @@
             .test-history-item-date {
                 margin-top: 0.5rem;
             }
+
+            .qris-code {
+                width: 150px;
+                height: 150px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -791,7 +936,7 @@
                 padding: 1rem;
             }
             
-            .profile-section, .queue-section, .test-history-section {
+            .profile-section, .queue-section, .test-history-section, .payment-section {
                 padding: 1rem;
             }
             
@@ -833,6 +978,7 @@
                 <li><a href="#" id="chatBtn">Chat Dokter</a></li>
                 <li><a href="#" id="testHistoryBtn">Tes Lab</a></li>
                 <li><a href="#" id="resultBtn">Hasil Tes</a></li>
+                <li><a href="#" id="paymentBtn">Pembayaran</a></li>
             </ul>
         </nav>
         <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
@@ -844,6 +990,7 @@
                 <li><a href="#" id="chatBtnMobile">Chat Dokter</a></li>
                 <li><a href="#" id="testHistoryBtnMobile">Tes Lab</a></li>
                 <li><a href="#" id="resultBtnMobile">Hasil Tes</a></li>
+                <li><a href="#" id="paymentBtnMobile">Pembayaran</a></li>
             </ul>
         </div>
     </header>
@@ -1013,6 +1160,87 @@
             <div id="testHistoryContent">
                 <!-- Test history items will be added here dynamically -->
                 <p id="noHistoryMessage">Anda belum memiliki riwayat pemeriksaan.</p>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="paymentSection" class="payment-section">
+            <div class="payment-header">
+                <h2>Pembayaran</h2>
+                <p>Silakan masukkan kode booking Anda untuk melihat detail pembayaran.</p>
+            </div>
+            
+            <div class="payment-form">
+                <label for="bookingCode">Kode Booking:</label>
+                <input type="text" id="bookingCode" placeholder="Masukkan kode booking Anda">
+                <button class="btn" id="checkPaymentBtn">Cek Pembayaran</button>
+            </div>
+            
+            <div id="paymentDetails" class="payment-details">
+                <h3>Detail Pembayaran</h3>
+                <div class="registration-detail-item">
+                    <div class="registration-detail-label">Kode Booking</div>
+                    <div id="paymentBookingCode">-</div>
+                </div>
+                <div class="registration-detail-item">
+                    <div class="registration-detail-label">Jenis Pemeriksaan</div>
+                    <div id="paymentTestName">-</div>
+                </div>
+                <div class="registration-detail-item">
+                    <div class="registration-detail-label">Total Pembayaran</div>
+                    <div id="paymentAmount" style="font-weight: bold; color: #e34829;">-</div>
+                </div>
+                <div class="registration-detail-item">
+                    <div class="registration-detail-label">Status</div>
+                    <div id="paymentStatus" style="font-weight: bold;">-</div>
+                </div>
+                
+                <div class="payment-methods" id="paymentMethods" style="display: none;">
+                    <h3>Pilih Metode Pembayaran</h3>
+                    
+                    <div class="payment-method" data-method="qris">
+                        <input type="radio" name="paymentMethod" id="qrisMethod" value="qris">
+                        <div class="payment-method-icon">💳</div>
+                        <div class="payment-method-info">
+                            <div class="payment-method-name">QRIS</div>
+                            <div class="payment-method-desc">Scan kode QR untuk pembayaran</div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method" data-method="dana">
+                        <input type="radio" name="paymentMethod" id="danaMethod" value="dana">
+                        <div class="payment-method-icon">💰</div>
+                        <div class="payment-method-info">
+                            <div class="payment-method-name">DANA</div>
+                            <div class="payment-method-desc">Transfer ke nomor DANA kami</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="proceedPaymentBtn" style="margin-top: 1rem; width: 100%;">Lanjutkan Pembayaran</button>
+                </div>
+            </div>
+            
+            <div id="paymentConfirmation" class="payment-confirmation">
+                <h3>Pembayaran Berhasil Diproses!</h3>
+                
+                <div id="qrisConfirmation" style="display: none;">
+                    <p>Silakan scan kode QR berikut untuk menyelesaikan pembayaran:</p>
+                    <div class="qris-code">
+                        QR Code Pembayaran<br>
+                        (Simulasi)
+                    </div>
+                    <p>Total: <span id="qrisAmount" style="font-weight: bold;">Rp 150.000</span></p>
+                </div>
+                
+                <div id="danaConfirmation" style="display: none;">
+                    <p>Silakan transfer ke nomor DANA berikut:</p>
+                    <div class="dana-number">0851 0153 3389</div>
+                    <p>a.n. Laboratorium Bahrul Maghfiroh</p>
+                    <p>Total: <span id="danaAmount" style="font-weight: bold;">Rp 150.000</span></p>
+                    <p>Setelah transfer, harap konfirmasi ke WhatsApp kami di 0851 0153 3389</p>
+                </div>
+                
+                <button class="btn" id="finishPaymentBtn">Selesai</button>
             </div>
         </section>
     </div>
@@ -1266,6 +1494,7 @@
         const profileSection = document.getElementById("profileSection");
         const queueSection = document.getElementById("queueSection");
         const testHistorySection = document.getElementById("testHistorySection");
+        const paymentSection = document.getElementById("paymentSection");
         const chatModal = document.getElementById("chatModal");
         const testModal = document.getElementById("testModal");
         const resultModal = document.getElementById("resultModal");
@@ -1283,6 +1512,11 @@
         const testHistoryBtns = [
             document.getElementById("testHistoryBtn"),
             document.getElementById("testHistoryBtnMobile")
+        ];
+
+        const paymentBtns = [
+            document.getElementById("paymentBtn"),
+            document.getElementById("paymentBtnMobile")
         ];
         
         const chatBtns = [
@@ -1346,6 +1580,21 @@
                 mobileMenu.classList.remove("active");
                 // Scroll to test history section
                 testHistorySection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        paymentBtns.forEach(btn => {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                // Hide all sections first
+                document.querySelectorAll('.container > section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                // Show payment section
+                paymentSection.style.display = 'block';
+                mobileMenu.classList.remove("active");
+                // Scroll to payment section
+                paymentSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
         
@@ -1760,6 +2009,137 @@
             // Switch back to doctor selection
             chatInterface.style.display = "none";
             doctorSelection.style.display = "block";
+        });
+
+        // Payment functionality
+        const checkPaymentBtn = document.getElementById("checkPaymentBtn");
+        const paymentDetails = document.getElementById("paymentDetails");
+        const paymentMethods = document.getElementById("paymentMethods");
+        const paymentConfirmation = document.getElementById("paymentConfirmation");
+        const proceedPaymentBtn = document.getElementById("proceedPaymentBtn");
+        const finishPaymentBtn = document.getElementById("finishPaymentBtn");
+        const qrisConfirmation = document.getElementById("qrisConfirmation");
+        const danaConfirmation = document.getElementById("danaConfirmation");
+        const paymentMethodCards = document.querySelectorAll(".payment-method");
+
+        // Sample payment data (in a real app, this would come from a database)
+        const paymentData = {
+            "1739257942984": {
+                testName: "Pemeriksaan Darah Lengkap",
+                amount: "Rp 150.000",
+                status: "Belum Dibayar"
+            },
+            "2739257942985": {
+                testName: "Pemeriksaan Gula Darah",
+                amount: "Rp 75.000",
+                status: "Belum Dibayar"
+            },
+            "3739257942986": {
+                testName: "Pemeriksaan Kolesterol",
+                amount: "Rp 120.000",
+                status: "Belum Dibayar"
+            }
+        };
+
+        checkPaymentBtn.addEventListener("click", function() {
+            const bookingCode = document.getElementById("bookingCode").value.trim();
+            
+            if (bookingCode === "") {
+                alert("Silakan masukkan kode booking Anda");
+                return;
+            }
+            
+            // Check if booking code exists
+            if (paymentData[bookingCode]) {
+                // Update payment details
+                document.getElementById("paymentBookingCode").textContent = bookingCode;
+                document.getElementById("paymentTestName").textContent = paymentData[bookingCode].testName;
+                document.getElementById("paymentAmount").textContent = paymentData[bookingCode].amount;
+                document.getElementById("paymentStatus").textContent = paymentData[bookingCode].status;
+                
+                // Show payment details
+                paymentDetails.style.display = "block";
+                
+                // Show payment methods if status is "Belum Dibayar"
+                if (paymentData[bookingCode].status === "Belum Dibayar") {
+                    paymentMethods.style.display = "block";
+                } else {
+                    paymentMethods.style.display = "none";
+                }
+                
+                // Hide confirmation if shown
+                paymentConfirmation.style.display = "none";
+            } else {
+                alert("Kode booking tidak ditemukan. Silakan coba lagi.");
+                paymentDetails.style.display = "none";
+                paymentConfirmation.style.display = "none";
+            }
+        });
+
+        // Payment method selection
+        paymentMethodCards.forEach(card => {
+            card.addEventListener("click", function() {
+                // Remove selected class from all cards
+                paymentMethodCards.forEach(c => {
+                    c.classList.remove("selected");
+                });
+                
+                // Add selected class to clicked card
+                this.classList.add("selected");
+                
+                // Check the radio button
+                const radio = this.querySelector("input[type='radio']");
+                radio.checked = true;
+            });
+        });
+
+        // Proceed to payment
+        proceedPaymentBtn.addEventListener("click", function() {
+            const selectedMethod = document.querySelector("input[name='paymentMethod']:checked");
+            
+            if (!selectedMethod) {
+                alert("Silakan pilih metode pembayaran");
+                return;
+            }
+            
+            // Get payment amount
+            const amount = document.getElementById("paymentAmount").textContent;
+            
+            // Show confirmation based on selected method
+            if (selectedMethod.value === "qris") {
+                qrisConfirmation.style.display = "block";
+                danaConfirmation.style.display = "none";
+                document.getElementById("qrisAmount").textContent = amount;
+            } else if (selectedMethod.value === "dana") {
+                danaConfirmation.style.display = "block";
+                qrisConfirmation.style.display = "none";
+                document.getElementById("danaAmount").textContent = amount;
+            }
+            
+            // Hide payment methods and show confirmation
+            paymentMethods.style.display = "none";
+            paymentConfirmation.style.display = "block";
+            
+            // Scroll to confirmation
+            paymentConfirmation.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Finish payment
+        finishPaymentBtn.addEventListener("click", function() {
+            // In a real app, this would update the payment status in the database
+            const bookingCode = document.getElementById("bookingCode").value.trim();
+            
+            if (paymentData[bookingCode]) {
+                paymentData[bookingCode].status = "Menunggu Konfirmasi";
+                document.getElementById("paymentStatus").textContent = "Menunggu Konfirmasi";
+                document.getElementById("paymentStatus").style.color = "#EAB44C";
+            }
+            
+            // Hide confirmation
+            paymentConfirmation.style.display = "none";
+            
+            // Show payment details again
+            paymentDetails.style.display = "block";
         });
     </script>
 </body>
